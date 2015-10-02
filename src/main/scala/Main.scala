@@ -1,21 +1,27 @@
 
 object Main extends App {
-  println("-- HashMap Main --")
-  
-  val map = new HashMap[Int](100)
-  println("Created HashMap with 100 buckets...")
+  def run(map: HashMap[Int]) = {
+    for (i <- 0 until 50) {
+      map.set(i.toString, i)
+    }
+    println("Set 50 values...")
 
-  for (i <- 0 until 50) {
-    map.set(i.toString, i)
+    println(s"Load factor: ${map.load}")
+
+    for (i <- 0 until 25) {
+      map.delete(i.toString)
+    }
+    println("Delete 25 values...")
+
+    println(s"Load factor: ${map.load}")
   }
-  println("Set 50 values...")
 
-  println(s"Load factor: ${map.load}")
+  println("-- BucketHashMap Main --")
+  println("Create BucketHashMap with maxSize=100...")
+  run(new BucketHashMap[Int](100))
 
-  for (i <- 0 until 25) {
-    map.delete(i.toString)
-  }
-  println("Deleted 25 values...")
+  println("-- OpenAddressingHashMap Main --")
+  println("Create OpenAddressingHashMap with maxSize=100...")
+  run(new OpenAddressingHashMap[Int](100))
 
-  println(s"Load factor: ${map.load}")
 }
