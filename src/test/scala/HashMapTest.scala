@@ -40,4 +40,19 @@ class HashMapTest extends FunSuite {
       assert(map.get(i.toString) == Some(i))
     }
   }
+
+  test("load factor") {
+    val EPS = 1e-6
+    val map = new HashMap[Int](10)
+    for (i <- 0 until 5) {
+      map.set(i.toString, i)
+    }
+    assert(Math.abs(map.load - 0.5) < EPS)
+    for (i <- 0 until 4) {
+      map.delete(i.toString)
+    }
+    assert(Math.abs(map.load - 0.1) < EPS)
+    map.delete("4")
+    assert(Math.abs(map.load - 0.0) < EPS)
+  }
 }

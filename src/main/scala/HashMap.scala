@@ -72,7 +72,6 @@ class HashMap[V](maxSize: Int) {
     }
   }
 
-  /** Useless. */
   def load(): Float = size * 1.0f / maxSize
 }
 

@@ -1,5 +1,7 @@
 
 object Main extends App {
+  println("-- HashMap Main --")
+  
   val map = new HashMap[Int](100)
   println("Created HashMap with 100 buckets...")
 
